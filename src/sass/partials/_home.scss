@@ -20,8 +20,29 @@ header {
 		box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 
 		.board-inner {
+			display: flex;
+			flex-direction: column;
 			width: 500px;
 			height: 500px;
+			padding: 10px;
+			border: 1px solid brown;
+			background: #444;
+
+			.top-row,
+			.middle-row,
+			.bottom-row {
+				display: flex;
+				flex-direction: row;
+				flex-grow: 1;
+
+				.left,
+				.center,
+				.right {
+					flex-grow: 1;
+					border: 1px solid blue;
+					font-family: 'Varela Round', 'Josefin Sans', sans-serif;
+				}
+			}
 		}
 	}
 }
