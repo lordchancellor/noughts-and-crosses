@@ -81,7 +81,3 @@ a.btn {
 .btn-github {
 	@include button-variant($whiteText, $github, $githubBorder);
 }
-
-.btn-twitter {
-	@include button-variant($whiteText, $twitter, $twitterBorder);
-}
