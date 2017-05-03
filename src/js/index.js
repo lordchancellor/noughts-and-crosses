@@ -1,4 +1,4 @@
 require('../sass/style.scss');
-import { Player } from './player';
-import { Grid } from './grid';
+import { Player } from './classes/player';
+import { Grid } from './classes/grid';
 
