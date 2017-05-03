@@ -1,7 +1,7 @@
 export class Player {
-	constructor(playerIcon) {
+	constructor(playerIcon, firstMove) {
 		this.playerIcon = playerIcon;
-		this.active = false;
+		this.active = firstMove;
 		this.squaresOccupied = [];
 	}
 
@@ -19,9 +19,5 @@ export class Player {
 
 	switchStatus() {
 		this.active = !this.active;
-	}
-
-	readyPlayer() {
-		this.active = true;
 	}
 }

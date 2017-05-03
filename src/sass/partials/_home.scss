@@ -1,5 +1,10 @@
 header {
+	h1 {
+		margin-bottom: 0;
+	}
+
 	h4 {
+		margin: 5px 0px 10px;
 		font-style: italic;
 	}
 }
@@ -11,7 +16,7 @@ header {
 	margin-bottom: 30px;
 
 	.board-outer {
-		display: flex;
+		display: none;
 		align-items: center;
 		justify-content: center;
 		width: 600px;
@@ -19,7 +24,6 @@ header {
 		border: 1px solid brown;
 		background: chocolate;
 		box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-		// box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 
 		.board-inner {
 			display: flex;
@@ -74,6 +78,53 @@ header {
 			.top-row,
 			.middle-row {
 				border-bottom: 5px solid blue;
+			}
+		}
+	}
+
+	.choose-icon {
+		display: flex;
+		flex-flow: column nowrap;
+		align-items: center;
+
+		border: 3px solid #333;
+		padding: 20px;
+		border-radius: 10px;
+		box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+
+		h2,
+		h4 {
+			margin: 0;
+		}
+
+		.icon-container {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			justify-content: space-around;
+
+			width: 75%;
+			margin-top: 20px;
+
+			button {
+				padding: 0;
+				font-size: 1.5rem;
+				font-family: 'Varela Round', 'Josefin Sans', sans-serif;
+				width: 40px;
+				height: 40px;
+				border-radius: 6px;
+				border: 1px solid;
+
+				border-color: #000;
+				background: #333;
+				color: #fff;
+				transition: all 0.3s ease-in-out;
+
+				&:hover {
+					background: #fff;
+					color: #333;
+					cursor: pointer;
+				}
 			}
 		}
 	}
