@@ -1,7 +1,4 @@
 require('../sass/style.scss');
 import { Player } from './player';
+import { Grid } from './grid';
 
-const thing = () => console.log('Woo-hoo!');
-const dave = new Player('X');
-
-thing();
