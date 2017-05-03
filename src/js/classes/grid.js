@@ -24,12 +24,10 @@ export class Grid {
 		let win = false;
 
 		for (const arr of this.winningCombos) {
-			if (positions.indexOf(arr[0]) !== -1 
-					&& positions.indexOf(arr[1]) !== -1 
-					&& positions.indexOf(arr[2]) !== -1) {
-						win = true;
-						break;
-					}
+			if (positions.includes(arr[0]) && positions.includes(arr[1]) && positions.includes(arr[2])) {
+				win = true;
+				break;
+			}
 		}
 
 		return win;
