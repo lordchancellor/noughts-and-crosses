@@ -1,6 +1,6 @@
 export class Player {
-	constructor(playerIcon, firstMove) {
-		this.playerIcon = playerIcon;
+	constructor(playerToken, firstMove) {
+		this.playerToken = playerToken;
 		this.active = firstMove;
 		this.squaresOccupied = [];
 	}
@@ -13,8 +13,8 @@ export class Player {
 		return this.squaresOccupied;
 	}
 
-	getIcon() {
-		return this.playerIcon;
+	getToken() {
+		return this.playerToken;
 	}
 
 	switchStatus() {

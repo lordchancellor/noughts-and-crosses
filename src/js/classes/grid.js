@@ -36,4 +36,14 @@ export class Grid {
 	checkForDraw() {
 		return this.grid.findIndex(x => x === '') === -1;
 	}
+
+	static spaceIsEmpty(loc) {
+		return this.grid[loc] === '';
+	}
+
+	placeMarker(loc, token) {
+		if (this.spaceIsEmpty(loc)) {
+			this.grid.splice(loc, 1, token);
+		}
+	}
 }
