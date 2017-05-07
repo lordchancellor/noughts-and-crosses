@@ -8,20 +8,40 @@
 		display: none;
 		align-items: center;
 		justify-content: center;
-		width: 550px;
-		height: 550px;
 		border: 1px solid brown;
 		background: chocolate;
 		box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+		width: 300px;
+		height: 300px;
+
+		@media screen and (min-width: 500px) {
+			width: 450px;
+			height: 450px;
+		}
+
+		@media screen and (min-width: 768px) {
+			width: 550px;
+			height: 550px;
+		}
 
 		.board-inner {
 			display: flex;
 			flex-direction: column;
-			width: 450px;
-			height: 450px;
 			padding: 10px;
 			border: 1px solid brown;
 			background: #444;
+			width: 250px;
+			height: 250px;
+
+			@media screen and (min-width: 500px) {
+				width: 400px;
+				height: 400px;
+			}
+
+			@media screen and (min-width: 768px) {
+				width: 450px;
+				height: 450px;
+			}
 
 			.top-row,
 			.middle-row,
@@ -45,32 +65,68 @@
 						padding: 0;
 						margin: 0;
 						font-family: 'Varela Round', 'Josefin Sans', sans-serif;
-						font-size: 9.0rem;
+						font-size: 5.0rem;
 						font-weight: 700;
 						text-transform: uppercase;
 						color: $whiteText;
 
+						@media screen and (min-width: 500px) {
+							font-size: 8.0rem;
+						}
+
+						@media screen and (min-width: 768px) {
+							font-size: 9.0rem;
+						}
+
 						&.cross {
-							top: -1px;
-							left: 24px;
+							top: -2px;
+							left: 14px;
+
+							@media screen and (min-width: 500px) {
+								top: -3px;
+								left: 23px;
+							}
+
+							@media screen and (min-width: 768px) {
+								top: -3px;
+								left: 24px;
+							}
 						}
 
 						&.nought {
-							top: -3px;
-							left: 16px;
+							top: -2px;
+							left: 9px;
+
+							@media screen and (min-width: 500px) {
+								top: -3px;
+								left: 14px;
+							}
+
+							@media screen and (min-width: 768px) {
+								top: -4px;
+								left: 16px;
+							}
 						}
 					}
 				}
 
 				.left,
 				.center {
-					border-right: 5px solid blue;
+					border-right: 2px solid blue;
+
+					@media screen and (min-width: 500px) {
+						border-right-width: 5px;
+					}
 				}
 			}
 
 			.top-row,
 			.middle-row {
-				border-bottom: 5px solid blue;
+				border-bottom: 2px solid blue;
+
+				@media screen and (min-width: 500px) {
+					border-bottom-width: 5px;
+				}
 			}
 		}
 	}
