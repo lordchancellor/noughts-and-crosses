@@ -35,7 +35,12 @@ export const setup = {
 		}
 	},
 
+	setYear: function setYear() {
+		document.getElementsByClassName('current-year')[0].textContent = new Date().getFullYear();
+	},
+
 	go: function go() {
 		this.setListeners();
+		this.setYear();
 	}
 };

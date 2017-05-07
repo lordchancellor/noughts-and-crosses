@@ -42,11 +42,8 @@ export const ui = {
 		const dialog = document.getElementsByClassName('end-game')[0];
 		const msg = document.getElementsByClassName('winner')[0];
 
-		console.log(dialog);
-		console.log(`Offset width: ${dialog.offsetWidth}`);
-
-		dialog.style.left = ((window.innerWidth / 2) - 70) + 'px';
-		dialog.style.top = ((window.innerHeight / 2) - 69) + 'px';
+		dialog.style.left = ((window.innerWidth / 2) - 74) + 'px';
+		dialog.style.top = ((window.innerHeight / 2) - 71) + 'px';
 
 		msg.textContent = winner;
 
@@ -66,7 +63,6 @@ export const ui = {
 
 		for (const square of squares) {
 			// Removing the child nodes - should only be one (or none), but loop to be sure
-			console.log(`${square} has the children ${square.childNodes}`);
 			while (square.hasChildNodes()) {
 				square.removeChild(square.lastChild);
 			}
