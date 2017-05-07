@@ -8,8 +8,8 @@
 		display: none;
 		align-items: center;
 		justify-content: center;
-		width: 600px;
-		height: 600px;
+		width: 550px;
+		height: 550px;
 		border: 1px solid brown;
 		background: chocolate;
 		box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
@@ -17,8 +17,8 @@
 		.board-inner {
 			display: flex;
 			flex-direction: column;
-			width: 500px;
-			height: 500px;
+			width: 450px;
+			height: 450px;
 			padding: 10px;
 			border: 1px solid brown;
 			background: #444;
@@ -51,13 +51,13 @@
 						color: $whiteText;
 
 						&.cross {
-							top: 5px;
-							left: 33px;
+							top: -1px;
+							left: 24px;
 						}
 
 						&.nought {
-							top: 7px;
-							left: 24px;
+							top: -3px;
+							left: 16px;
 						}
 					}
 				}
