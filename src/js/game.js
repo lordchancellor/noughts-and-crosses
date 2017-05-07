@@ -7,23 +7,18 @@ export const game = {
     ai: undefined,
 
     setPlayer: function setPlayer(token) {
-        if (token === 'X') {
-            this.player = new Player('X', true);
-        }
-        else {
-            this.player = new Player('O', false);
-        }
+        const firstTurn = token === 'X' ? true : false;
+
+        this.player = new Player(token, firstTurn);
 
         this.setAI();
     },
 
     setAI: function setAI() {
-        if (this.player.getToken() === 'X') {
-            this.ai = new Player('O', false);
-        }
-        else {
-            this.ai = new Player('X', true);
-        }
+        const aiToken = this.player.getToken() === 'X' ? 'O' : 'X';
+        const firstTurn = this.player.getToken() === 'X' ? false : true;
+
+        this.ai = new Player(aiToken, firstTurn);
     },
 
     aiTurn: function aiTurn() {
@@ -45,12 +40,19 @@ export const game = {
     playerTurn: function playerTurn(loc) {
         this.board.placeMarker(loc, this.player.getToken());
         this.player.occupySquare(loc);
-        this.endTurn(this.player.getOccupiedSquares());
+        this.endTurn(this.player.getOccupiedSquares(), this.ai.getOccupiedSquares());
     },
 
-    endTurn: function endTurn(positions) {
+    endTurn: function endTurn(playerPos, aiPos) {
         this.board.printGrid();
-        if (this.board.checkForDraw()) { console.log('Draw'); }
-        if (this.board.checkForWin(positions)) { console.log('Winner'); }
+        if (this.board.checkForDraw()) { 
+            console.log('Draw'); 
+        }
+        else if (this.board.checkForWin(playerPos)) { 
+            console.log('Player Wins!'); 
+        }
+        else if (this.board.checkForWin(aiPos)) {
+            console.log('AI Wins!');
+        }
     }
 };
