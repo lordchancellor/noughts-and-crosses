@@ -54,13 +54,13 @@ export const game = {
         this.board.printGrid();
 
         if (this.board.checkForDraw()) { 
-            console.log('Draw'); 
+            setTimeout(() => ui.endGame("It's a draw!"), 300); 
         }
         else if (this.board.checkForWin(playerPos)) { 
-            console.log('Player Wins!'); 
+            setTimeout(() => ui.endGame('You win!'), 300); 
         }
         else if (this.board.checkForWin(aiPos)) {
-            console.log('AI Wins!');
+            setTimeout(() => ui.endGame('You lose...'), 300); 
         }
         else {
             this.switchTurns();
@@ -71,12 +71,17 @@ export const game = {
         }
     },
 
-    switchTurns() {
+    switchTurns: function switchTurns() {
         this.player.switchStatus();
         this.ai.switchStatus();
     },
 
-    isPlayerTurn() {
+    isPlayerTurn: function isPlayerTurn() {
         return this.player.isActive();
+    },
+
+    clearGame: function clearGame() {
+        this.board = new Board();
+        ui.clearBoard();
     }
 };

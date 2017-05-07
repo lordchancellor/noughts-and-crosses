@@ -42,8 +42,6 @@ export class Board {
 	}
 
 	placeToken(loc, token, el) {
-		console.log(el);
-		
 		if (this.spaceIsEmpty(loc)) {
 			this.grid.splice(loc, 1, token);
 			

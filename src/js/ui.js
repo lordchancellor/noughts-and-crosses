@@ -25,7 +25,7 @@ export const ui = {
 		return squares;
 	},
 
-	getSquare(number) {
+	getSquare: function getSquare(number) {
 		const squares = this.getSquares();
 		let square;
 
@@ -36,5 +36,40 @@ export const ui = {
 		}
 
 		return square;
+	},
+
+	endGame: function endGame(winner) {
+		const dialog = document.getElementsByClassName('end-game')[0];
+		const msg = document.getElementsByClassName('winner')[0];
+
+		console.log(dialog);
+		console.log(`Offset width: ${dialog.offsetWidth}`);
+
+		dialog.style.left = ((window.innerWidth / 2) - 70) + 'px';
+		dialog.style.top = ((window.innerHeight / 2) - 69) + 'px';
+
+		msg.textContent = winner;
+
+		document.getElementsByClassName('overlay')[0].style.display = 'block';
+		dialog.style.display = 'block';
+	},
+
+	nextGame: function nextGame() {
+		document.getElementsByClassName('end-game')[0].style.display = 'none';
+		document.getElementsByClassName('overlay')[0].style.display = 'none';
+		document.getElementsByClassName('choose-token')[0].style.display = 'flex';
+		document.getElementsByClassName('board-outer')[0].style.display = 'none';
+	},
+
+	clearBoard: function clearBoard() {
+		const squares = this.getSquares();
+
+		for (const square of squares) {
+			// Removing the child nodes - should only be one (or none), but loop to be sure
+			console.log(`${square} has the children ${square.childNodes}`);
+			while (square.hasChildNodes()) {
+				square.removeChild(square.lastChild);
+			}
+		}
 	}
 };

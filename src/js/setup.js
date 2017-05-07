@@ -5,6 +5,7 @@ export const setup = {
 	setListeners: function setListeners() {
 		const chooseX = document.getElementById('choose-x');
 		const chooseO = document.getElementById('choose-o');
+		const nextGame = document.getElementsByClassName('play-again')[0];
 		const squares = ui.getSquares();
 
 		chooseX.addEventListener('click', () => {
@@ -17,7 +18,12 @@ export const setup = {
 			console.log('Choose O');
 			ui.activateBoard();
 			new Promise(() => game.setPlayer('O'))
-					.then(setTimeout(() => game.aiTurn(), 500));
+					.then(setTimeout(() => game.aiTurn(), 250));
+		});
+
+		nextGame.addEventListener('click', () => {
+			ui.nextGame();
+			game.clearGame();
 		});
 
 		for (const square of squares) {
