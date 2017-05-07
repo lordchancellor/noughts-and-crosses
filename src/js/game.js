@@ -1,5 +1,6 @@
 import { Player } from './classes/player';
 import { Board } from './classes/board';
+import { ui } from './ui';
 
 export const game = {
     board: new Board(),
@@ -11,7 +12,7 @@ export const game = {
 
         this.player = new Player(token, firstTurn);
 
-        this.setAI();
+        return(this.setAI());
     },
 
     setAI: function setAI() {
@@ -19,6 +20,8 @@ export const game = {
         const firstTurn = this.player.getToken() === 'X' ? false : true;
 
         this.ai = new Player(aiToken, firstTurn);
+
+        return true;
     },
 
     aiTurn: function aiTurn() {
@@ -28,23 +31,28 @@ export const game = {
             const randomSpace = Math.floor(Math.random() * 9);
 
             if (this.board.spaceIsEmpty(randomSpace)) {
-                this.board.placeMarker(randomSpace, this.ai.getToken());
+                const square = ui.getSquare(randomSpace);
+
+                this.board.placeToken(randomSpace, this.ai.getToken(), square);
                 this.ai.occupySquare(randomSpace);
                 turnTaken = true;
             }
         } while (!turnTaken);
 
-        this.endTurn(this.ai.getOccupiedSquares());
+        this.endTurn(this.player.getOccupiedSquares(), this.ai.getOccupiedSquares());
     },
 
-    playerTurn: function playerTurn(loc) {
-        this.board.placeMarker(loc, this.player.getToken());
-        this.player.occupySquare(loc);
+    playerTurn: function playerTurn(el) {
+        const squareNumber = parseInt(el.getAttribute('data-square'));
+ 
+        this.board.placeToken(squareNumber, this.player.getToken(), el);
+        this.player.occupySquare(squareNumber);
         this.endTurn(this.player.getOccupiedSquares(), this.ai.getOccupiedSquares());
     },
 
     endTurn: function endTurn(playerPos, aiPos) {
         this.board.printGrid();
+
         if (this.board.checkForDraw()) { 
             console.log('Draw'); 
         }
@@ -54,5 +62,21 @@ export const game = {
         else if (this.board.checkForWin(aiPos)) {
             console.log('AI Wins!');
         }
+        else {
+            this.switchTurns();
+
+            if (!this.isPlayerTurn()) {
+                setTimeout(() => this.aiTurn(), 500);
+            }
+        }
+    },
+
+    switchTurns() {
+        this.player.switchStatus();
+        this.ai.switchStatus();
+    },
+
+    isPlayerTurn() {
+        return this.player.isActive();
     }
 };

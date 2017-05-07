@@ -20,4 +20,8 @@ export class Player {
 	switchStatus() {
 		this.active = !this.active;
 	}
+
+	isActive() {
+		return this.active;
+	}
 }

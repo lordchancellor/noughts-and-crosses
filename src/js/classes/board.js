@@ -41,12 +41,28 @@ export class Board {
 		return this.grid[loc] === '';
 	}
 
-	placeMarker(loc, token) {
+	placeToken(loc, token, el) {
+		console.log(el);
+		
 		if (this.spaceIsEmpty(loc)) {
 			this.grid.splice(loc, 1, token);
+			
+			if (el) el.appendChild(this.createTokenElement(token));
 		}
 	}
 
+	createTokenElement(token) {
+		const h2 = document.createElement('h2');
+		const tokenClass = token === 'X' ? 'cross' : 'nought';
+
+		h2.classList.add('token');
+		h2.classList.add(tokenClass);
+		h2.textContent = token;
+
+		return h2;
+	}
+
+	// TODO - Remove
 	printGrid() {
 		console.log(`${this.grid[0]} ${this.grid[1]} ${this.grid[2]}`);
 		console.log(`${this.grid[3]} ${this.grid[4]} ${this.grid[5]}`);

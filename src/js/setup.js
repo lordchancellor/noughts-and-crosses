@@ -3,17 +3,30 @@ import { game } from './game';
 
 export const setup = {
 	setListeners: function setListeners() {
-		document.getElementById('choose-x').addEventListener('click', () => {
+		const chooseX = document.getElementById('choose-x');
+		const chooseO = document.getElementById('choose-o');
+		const squares = ui.getSquares();
+
+		chooseX.addEventListener('click', () => {
 			console.log('Choose X');
 			ui.activateBoard();
 			game.setPlayer('X');
 		});
 
-		document.getElementById('choose-o').addEventListener('click', () => {
+		chooseO.addEventListener('click', () => {
 			console.log('Choose O');
 			ui.activateBoard();
-			game.setPlayer('O');
+			new Promise(() => game.setPlayer('O'))
+					.then(setTimeout(() => game.aiTurn(), 500));
 		});
+
+		for (const square of squares) {
+			square.addEventListener('click', (e) => {
+				if (game.isPlayerTurn()) {
+					game.playerTurn(e.target);
+				}
+			});
+		}
 	},
 
 	go: function go() {

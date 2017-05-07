@@ -47,7 +47,11 @@ header {
 					flex-grow: 1;
 					position: relative;
 
-					.marker {
+					&:hover {
+						cursor: pointer;
+					}
+
+					.token {
 						position: absolute;
 						padding: 0;
 						margin: 0;
