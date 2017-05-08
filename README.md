@@ -1,4 +1,4 @@
-# Noughts & Crosses (A.K.A. Tic Tac Toe)
+# Noughts & Crosses (a.k.a. Tic Tac Toe)
 Noughts & Crosses  - the classic game brought to you with style. This project is built in beautiful pure ES2015 and Sass, bundled and transpiled by Webpack and Babel for optimum backwards-compatibility.
 
 ---

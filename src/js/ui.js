@@ -43,7 +43,7 @@ export const ui = {
 		const msg = document.getElementsByClassName('winner')[0];
 
 		dialog.style.left = ((window.innerWidth / 2) - 74) + 'px';
-		dialog.style.top = ((window.innerHeight / 2) - 71) + 'px';
+		dialog.style.top = ((window.innerHeight / 2) - 105) + 'px';
 
 		msg.textContent = winner;
 

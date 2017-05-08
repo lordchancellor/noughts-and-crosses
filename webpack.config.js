@@ -29,14 +29,9 @@ module.exports = {
 				loader: 'file-loader',
 				options: {
 					name: '[name].[ext]',
-					outputPath: 'img/',
-					publicPath: '../img/'
+					outputPath: 'img/'
 				}
-			},
-			{
-				test: /\.(jpe?g|png|gif|svg)$/,
-				use: 'url-loader'
-			}
+			}		
 		]
 	},
 	devServer: {
