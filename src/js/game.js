@@ -58,16 +58,26 @@ export const game = {
     },
 
     endTurn: function endTurn(playerPos, aiPos) {
-        this.board.printGrid();
+        const winCode = this.board.checkGameStatus(playerPos, aiPos);
 
-        if (this.board.checkForWin(playerPos)) { 
-            setTimeout(() => ui.endGame('You win!'), 300); 
-        }
-        else if (this.board.checkForWin(aiPos)) { 
-            setTimeout(() => ui.endGame('You lose...'), 300); 
-        }
-        else if (this.board.checkForDraw()) {
-            setTimeout(() => ui.endGame("It's a draw!"), 300); 
+        this.board.printGrid();
+        console.log(this.board.getEmptySquares());
+
+        if (winCode) {
+            switch (winCode) {
+                case 1:
+                    setTimeout(() => ui.endGame('You win!'), 300);
+                    break;
+                case 2:
+                    setTimeout(() => ui.endGame('You lose...'), 300);
+                    break;
+                case -1:
+                    setTimeout(() => ui.endGame("It's a draw!"), 300);
+                    break;
+                default:
+                    setTimeout(() => ui.endGame("Something went wrong"), 300);
+                    break; 
+            }
         }
         else {
             this.switchTurns();

@@ -20,21 +20,26 @@ export class Board {
 		];
 	}
 
-	checkForWin(positions) {
-		let win = false;
-
+	checkGameStatus(playerPos, aiPos) {
+		// Game status return codes:
+		// -1 -> Draw
+		// 0 -> Game not over
+		// 1 -> Player wins
+		// 2 -> AI wins
 		for (const arr of this.winningCombos) {
-			if (positions.includes(arr[0]) && positions.includes(arr[1]) && positions.includes(arr[2])) {
-				win = true;
-				break;
+			if (playerPos.includes(arr[0]) && playerPos.includes(arr[1]) && playerPos.includes(arr[2])) {
+				return 1;
+			}
+			else if (aiPos.includes(arr[0]) && aiPos.includes(arr[1]) && aiPos.includes(arr[2])) {
+				return 2;
 			}
 		}
 
-		return win;
-	}
+		if (this.grid.findIndex(x => x === '') === -1) {
+			return -1;
+		}
 
-	checkForDraw() {
-		return this.grid.findIndex(x => x === '') === -1;
+		return 0;
 	}
 
 	spaceIsEmpty(loc) {
@@ -58,6 +63,18 @@ export class Board {
 		h2.textContent = token;
 
 		return h2;
+	}
+
+	getEmptySquares() {
+		let emptySquares = [];
+
+		for (const [idx, square] of this.grid.entries()) {
+			if (square === '') {
+				emptySquares = [...emptySquares, idx];
+			}
+		}
+
+		return emptySquares;
 	}
 
 	// TODO - Remove
