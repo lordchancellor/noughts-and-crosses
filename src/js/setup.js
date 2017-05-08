@@ -17,8 +17,14 @@ export const setup = {
 		chooseO.addEventListener('click', () => {
 			console.log('Choose O');
 			ui.activateBoard();
-			new Promise(() => game.setPlayer('O'))
-					.then(setTimeout(() => game.aiTurn(), 250));
+			if (game.isAiDumb()) {
+				new Promise(() => game.setPlayer('O'))
+						.then(setTimeout(() => game.dumbAiTurn(), 250));
+			}
+			else {
+				new Promise(() => game.setPlayer('O'))
+						.then(setTimeout(() => game.smartAiTurn(), 250));
+			}
 		});
 
 		nextGame.addEventListener('click', () => {

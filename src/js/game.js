@@ -6,6 +6,7 @@ export const game = {
     board: new Board(),
     player: undefined,
     ai: undefined,
+    dumbAi: true,
 
     setPlayer: function setPlayer(token) {
         const firstTurn = token === 'X' ? true : false;
@@ -24,7 +25,7 @@ export const game = {
         return true;
     },
 
-    aiTurn: function aiTurn() {
+    dumbAiTurn: function dumbAiTurn() {
         let turnTaken = false;
 
         do {
@@ -40,6 +41,10 @@ export const game = {
         } while (!turnTaken);
 
         this.endTurn(this.player.getOccupiedSquares(), this.ai.getOccupiedSquares());
+    },
+
+    smartAiTurn: function smartAiTurn() {
+        console.log('Smart AI');
     },
 
     playerTurn: function playerTurn(el) {
@@ -68,7 +73,12 @@ export const game = {
             this.switchTurns();
 
             if (!this.isPlayerTurn()) {
-                setTimeout(() => this.aiTurn(), 500);
+                if (this.dumbAi) {
+                    setTimeout(() => this.dumbAiTurn(), 500);
+                }
+                else {
+                    setTimeout(() => this.smartAiTurn(), 500);
+                }
             }
         }
     },
@@ -80,6 +90,10 @@ export const game = {
 
     isPlayerTurn: function isPlayerTurn() {
         return this.player.isActive();
+    },
+
+    isAiDumb: function isAiDumb() {
+        return this.dumbAi;
     },
 
     clearGame: function clearGame() {
