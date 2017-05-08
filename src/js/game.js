@@ -54,13 +54,13 @@ export const game = {
         this.board.printGrid();
 
         if (this.board.checkForWin(playerPos)) { 
-            setTimeout(() => ui.endGame("It's a draw!"), 300); 
-        }
-        else if (this.board.checkForWin(aiPos)) { 
             setTimeout(() => ui.endGame('You win!'), 300); 
         }
-        else if (this.board.checkForDraw()) {
+        else if (this.board.checkForWin(aiPos)) { 
             setTimeout(() => ui.endGame('You lose...'), 300); 
+        }
+        else if (this.board.checkForDraw()) {
+            setTimeout(() => ui.endGame("It's a draw!"), 300); 
         }
         else {
             this.switchTurns();
