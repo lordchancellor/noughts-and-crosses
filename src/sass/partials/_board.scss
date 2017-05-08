@@ -1,0 +1,127 @@
+.board-outer {
+	display: none;
+	align-items: center;
+	justify-content: center;
+	background: chocolate url(../img/wood.jpg);
+	border: 1px solid #333;
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+	width: 300px;
+	height: 300px;
+
+	@media screen and (min-width: 500px) {
+		width: 450px;
+		height: 450px;
+	}
+
+	@media screen and (min-width: 768px) {
+		width: 550px;
+		height: 550px;
+	}
+
+	.board-inner {
+		display: flex;
+		flex-direction: column;
+		padding: 10px;
+		border: 1px solid #333;
+		background: #444 url(../img/marble.jpg);
+		width: 250px;
+		height: 250px;
+
+		@media screen and (min-width: 500px) {
+			width: 400px;
+			height: 400px;
+		}
+
+		@media screen and (min-width: 768px) {
+			width: 450px;
+			height: 450px;
+		}
+
+		.top-row,
+		.middle-row,
+		.bottom-row {
+			display: flex;
+			flex-direction: row;
+			flex-grow: 1;
+
+			.left,
+			.center,
+			.right {
+				flex-grow: 1;
+				position: relative;
+
+				&:hover {
+					cursor: pointer;
+				}
+
+				.token {
+					position: absolute;
+					padding: 0;
+					margin: 0;
+					font-family: 'Varela Round', 'Josefin Sans', sans-serif;
+					font-size: 5.0rem;
+					font-weight: 700;
+					text-transform: uppercase;
+					color: $whiteText;
+					text-shadow: 2px 2px 5px #000;
+
+					@media screen and (min-width: 500px) {
+						font-size: 8.0rem;
+					}
+
+					@media screen and (min-width: 768px) {
+						font-size: 9.0rem;
+					}
+
+					&.cross {
+						top: -2px;
+						left: 14px;
+
+						@media screen and (min-width: 500px) {
+							top: -3px;
+							left: 23px;
+						}
+
+						@media screen and (min-width: 768px) {
+							top: -3px;
+							left: 24px;
+						}
+					}
+
+					&.nought {
+						top: -2px;
+						left: 9px;
+
+						@media screen and (min-width: 500px) {
+							top: -3px;
+							left: 14px;
+						}
+
+						@media screen and (min-width: 768px) {
+							top: -4px;
+							left: 16px;
+						}
+					}
+				}
+			}
+
+			.left,
+			.center {
+				border-right: 2px solid rgba(#000, 0.3);
+
+				@media screen and (min-width: 500px) {
+					border-right-width: 5px;
+				}
+			}
+		}
+
+		.top-row,
+		.middle-row {
+			border-bottom: 2px solid rgba(#000, 0.3);
+
+			@media screen and (min-width: 500px) {
+				border-bottom-width: 5px;
+			}
+		}
+	}
+}
