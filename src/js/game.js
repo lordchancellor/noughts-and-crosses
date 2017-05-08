@@ -45,9 +45,11 @@ export const game = {
     playerTurn: function playerTurn(el) {
         const squareNumber = parseInt(el.getAttribute('data-square'));
  
-        this.board.placeToken(squareNumber, this.player.getToken(), el);
-        this.player.occupySquare(squareNumber);
-        this.endTurn(this.player.getOccupiedSquares(), this.ai.getOccupiedSquares());
+        if (this.board.spaceIsEmpty(squareNumber)) {
+            this.board.placeToken(squareNumber, this.player.getToken(), el);
+            this.player.occupySquare(squareNumber);
+            this.endTurn(this.player.getOccupiedSquares(), this.ai.getOccupiedSquares());
+        }
     },
 
     endTurn: function endTurn(playerPos, aiPos) {
