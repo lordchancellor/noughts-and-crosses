@@ -63,16 +63,16 @@ export const game = {
         this.board.printGrid();
         console.log(this.board.getEmptySquares());
 
-        if (winCode) {
+        if (winCode !== false) {
             switch (winCode) {
                 case 1:
-                    setTimeout(() => ui.endGame('You win!'), 300);
-                    break;
-                case 2:
                     setTimeout(() => ui.endGame('You lose...'), 300);
                     break;
-                case -1:
+                case 0:
                     setTimeout(() => ui.endGame("It's a draw!"), 300);
+                    break;
+                case -1:
+                    setTimeout(() => ui.endGame('You win!'), 300);
                     break;
                 default:
                     setTimeout(() => ui.endGame("Something went wrong"), 300);

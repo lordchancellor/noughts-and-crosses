@@ -21,25 +21,25 @@ export class Board {
 	}
 
 	checkGameStatus(playerPos, aiPos) {
-		// Game status return codes:
-		// -1 -> Draw
-		// 0 -> Game not over
-		// 1 -> Player wins
-		// 2 -> AI wins
+		// Game status return codes (to aid with minimax scoring):
+		// 1 -> AI wins
+		// 0 -> Draw
+		// -1 -> Player wins
+		// false -> Game not over
 		for (const arr of this.winningCombos) {
 			if (playerPos.includes(arr[0]) && playerPos.includes(arr[1]) && playerPos.includes(arr[2])) {
-				return 1;
+				return -1;
 			}
 			else if (aiPos.includes(arr[0]) && aiPos.includes(arr[1]) && aiPos.includes(arr[2])) {
-				return 2;
+				return 1;
 			}
 		}
 
 		if (this.grid.findIndex(x => x === '') === -1) {
-			return -1;
+			return 0;
 		}
 
-		return 0;
+		return false;
 	}
 
 	spaceIsEmpty(loc) {
