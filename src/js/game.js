@@ -1,12 +1,13 @@
 import { Player } from './classes/player';
 import { Board } from './classes/board';
 import { ui } from './ui';
+import { minimax } from './minimax';
 
 export const game = {
     board: new Board(),
     player: undefined,
     ai: undefined,
-    dumbAi: true,
+    useMinimax: false,
 
     setPlayer: function setPlayer(token) {
         const firstTurn = token === 'X' ? true : false;
@@ -44,7 +45,10 @@ export const game = {
     },
 
     smartAiTurn: function smartAiTurn() {
-        console.log('Smart AI');
+        // console.log(minimax.minimaxMove(this.board.getBoard()));
+        // console.log(minimax.getNodes());
+
+        // this.board.checkGameStatus(this.player.getOccupiedSquares(), this.ai.getOccupiedSquares());
     },
 
     playerTurn: function playerTurn(el) {
@@ -53,6 +57,10 @@ export const game = {
         if (this.board.spaceIsEmpty(squareNumber)) {
             this.board.placeToken(squareNumber, this.player.getToken(), el);
             this.player.occupySquare(squareNumber);
+
+            console.log(minimax.minimaxMove(this.board.getBoard()));
+            console.log(minimax.getNodes());
+
             this.endTurn(this.player.getOccupiedSquares(), this.ai.getOccupiedSquares());
         }
     },
@@ -61,7 +69,7 @@ export const game = {
         const winCode = this.board.checkGameStatus(playerPos, aiPos);
 
         this.board.printGrid();
-        console.log(this.board.getEmptySquares());
+        // console.log(this.board.getEmptySquares());
 
         if (winCode !== false) {
             switch (winCode) {
@@ -83,7 +91,7 @@ export const game = {
             this.switchTurns();
 
             if (!this.isPlayerTurn()) {
-                if (this.dumbAi) {
+                if (!this.useMinimax) {
                     setTimeout(() => this.dumbAiTurn(), 500);
                 }
                 else {
@@ -102,8 +110,8 @@ export const game = {
         return this.player.isActive();
     },
 
-    isAiDumb: function isAiDumb() {
-        return this.dumbAi;
+    playWithMinimax: function playWithMinimax() {
+        return this.useMinimax;
     },
 
     clearGame: function clearGame() {

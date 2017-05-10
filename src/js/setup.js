@@ -17,13 +17,13 @@ export const setup = {
 		chooseO.addEventListener('click', () => {
 			console.log('Choose O');
 			ui.activateBoard();
-			if (game.isAiDumb()) {
+			if (game.playWithMinimax()) {
 				new Promise(() => game.setPlayer('O'))
-						.then(setTimeout(() => game.dumbAiTurn(), 250));
+						.then(setTimeout(() => game.smartAiTurn(), 250));
 			}
 			else {
 				new Promise(() => game.setPlayer('O'))
-						.then(setTimeout(() => game.smartAiTurn(), 250));
+						.then(setTimeout(() => game.dumbAiTurn(), 250));
 			}
 		});
 

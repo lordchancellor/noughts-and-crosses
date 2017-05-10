@@ -77,6 +77,10 @@ export class Board {
 		return emptySquares;
 	}
 
+	getBoard() {
+		return this.grid;
+	}
+
 	// TODO - Remove
 	printGrid() {
 		console.log(`${this.grid[0]} ${this.grid[1]} ${this.grid[2]}`);
