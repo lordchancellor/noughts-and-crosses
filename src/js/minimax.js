@@ -2,6 +2,8 @@ import { game } from './game';
 
 export const minimax = {
 	numNodes: 0,
+	playerToken: null,
+	aiToken: null,
 
 	setNodes: function setNodes(val) {
 		this.numNodes = val;
@@ -11,12 +13,20 @@ export const minimax = {
 		return this.numNodes;
 	},
 
+	setPlayerToken: function setPlayerToken(token) {
+		this.playerToken = token;
+	},
+
+	setAiToken: function setAiToken(token) {
+		this.aiToken = token;
+	},
+
 	recurseMinimax: function recurseMinimax(board, isPlayer) {
 		const playerSquares = game.player.getOccupiedSquares();
 		const aiSquaes = game.player.getOccupiedSquares();
 		const winner = game.board.checkGameStatus(playerSquares, aiSquaes);
 
-		this.numNodes++;
+		minimax.numNodes++;
 
 		if (winner !== false) {
 			switch (winner) {
@@ -40,13 +50,14 @@ export const minimax = {
 
 			for (const [idx, square] of board.entries()) {
 				if (square === '') {
-					board.splice(idx, 1, isPlayer);
+					const tokenToAdd = isPlayer ? minimax.playerToken : minimax.aiToken;
+
+					board.splice(idx, 1, tokenToAdd);
 
 					const value = this.recurseMinimax(board, !isPlayer)[0];
 
 					if ((isPlayer && (nextVal === null || value > nextVal)) || (!isPlayer && (nextVal === null || value < nextVal))) {
-						// nextBoard = board.map((arr) => arr.slice());
-						nextBoard = board;
+						nextBoard = board.slice();
 						nextVal = value;
 					}
 
@@ -60,6 +71,8 @@ export const minimax = {
 
 	minimaxMove: function minimaxMove(board) {
 		this.setNodes(0);
+
+		// console.log(this.recurseMinimax(board, true)[1]);
 
 		return this.recurseMinimax(board, true)[1];
 	}

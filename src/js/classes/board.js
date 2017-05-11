@@ -6,6 +6,8 @@ export class Board {
 			'', '', ''
 		];
 
+		this.nextBoard = [];
+
 		this.winningCombos = [
 			[0, 1, 2],
 			[3, 4, 5],
@@ -40,6 +42,14 @@ export class Board {
 		}
 
 		return false;
+	}
+
+	setNextBoardState(board) {
+		this.nextBoard = board.slice();
+	}
+
+	getNextBoardState() {
+		return this.nextBoard;
 	}
 
 	spaceIsEmpty(loc) {

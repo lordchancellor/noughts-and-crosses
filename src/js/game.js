@@ -26,6 +26,10 @@ export const game = {
         return true;
     },
 
+    getToken: function getToken(player) {
+        return player ? this.player.getToken() : this.ai.getToken();
+    },
+
     dumbAiTurn: function dumbAiTurn() {
         let turnTaken = false;
 
@@ -45,21 +49,15 @@ export const game = {
     },
 
     smartAiTurn: function smartAiTurn() {
-        // console.log(minimax.minimaxMove(this.board.getBoard()));
-        // console.log(minimax.getNodes());
 
-        // this.board.checkGameStatus(this.player.getOccupiedSquares(), this.ai.getOccupiedSquares());
     },
 
     playerTurn: function playerTurn(el) {
         const squareNumber = parseInt(el.getAttribute('data-square'));
- 
+
         if (this.board.spaceIsEmpty(squareNumber)) {
             this.board.placeToken(squareNumber, this.player.getToken(), el);
             this.player.occupySquare(squareNumber);
-
-            console.log(minimax.minimaxMove(this.board.getBoard()));
-            console.log(minimax.getNodes());
 
             this.endTurn(this.player.getOccupiedSquares(), this.ai.getOccupiedSquares());
         }
@@ -69,7 +67,6 @@ export const game = {
         const winCode = this.board.checkGameStatus(playerPos, aiPos);
 
         this.board.printGrid();
-        // console.log(this.board.getEmptySquares());
 
         if (winCode !== false) {
             switch (winCode) {

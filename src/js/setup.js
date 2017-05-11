@@ -1,5 +1,6 @@
 import { ui } from './ui';
 import { game } from './game';
+import { minimax } from './minimax';
 
 export const setup = {
 	setListeners: function setListeners() {
@@ -12,18 +13,30 @@ export const setup = {
 			console.log('Choose X');
 			ui.activateBoard();
 			game.setPlayer('X');
+
+			if (game.useMinimax) {
+				minimax.setPlayerToken('X');
+				minimax.setAiToken('O');
+			}
 		});
 
 		chooseO.addEventListener('click', () => {
 			console.log('Choose O');
 			ui.activateBoard();
+			
 			if (game.playWithMinimax()) {
 				new Promise(() => game.setPlayer('O'))
-						.then(setTimeout(() => game.smartAiTurn(), 250));
+						.then(setTimeout(() => {
+							minimax.setPlayerToken('O');
+							minimax.setAiToken('X');
+							game.smartAiTurn();
+						}), 250);
 			}
 			else {
 				new Promise(() => game.setPlayer('O'))
-						.then(setTimeout(() => game.dumbAiTurn(), 250));
+						.then(setTimeout(() => {
+							game.dumbAiTurn();
+						}), 250);
 			}
 		});
 
