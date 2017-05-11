@@ -91,6 +91,17 @@ export class Board {
 		return this.grid;
 	}
 
+	getNextMove() {
+		const board = this.getBoard();
+		const nextBoard = this.getNextBoardState();
+
+		for (const [idx, square] of board.entries()) {
+			if (square !== nextBoard[idx]) {
+				return idx;
+			}
+		}
+	}
+	
 	// TODO - Remove
 	printGrid() {
 		console.log(`${this.grid[0]} ${this.grid[1]} ${this.grid[2]}`);
