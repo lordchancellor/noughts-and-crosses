@@ -1,7 +1,6 @@
 import { Player } from './classes/player';
 import { Board } from './classes/board';
 import { ui } from './ui';
-import { minimax } from './minimax';
 
 export const game = {
     board: new Board(),
@@ -49,7 +48,7 @@ export const game = {
     },
 
     smartAiTurn: function smartAiTurn() {
-
+        console.log('Smart AI Turn');
     },
 
     playerTurn: function playerTurn(el) {
@@ -67,6 +66,7 @@ export const game = {
         const winCode = this.board.checkGameStatus(playerPos, aiPos);
 
         this.board.printGrid();
+        console.log(this.board.getBoard());
 
         if (winCode !== false) {
             switch (winCode) {
